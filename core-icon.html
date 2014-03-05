@@ -108,19 +108,12 @@ license that can be found in the LICENSE file.
         if (!this.icon) {
           return;
         }
-        var a = this.icon.split(':');
-        var icon = a.pop();
-        var n = a.pop();
-        var s = this.getIconset(n);
-        if (s) {
-          var o = s.getOffset(icon, this.activeTheme);
-          if (o) {
-            var r = this.size / s.iconsize;
-            this.style.backgroundImage = 'url(' + s.src + ')';
-            this.style.backgroundPosition = 
-                (-o.offsetx * r + 'px') + ' ' + (-o.offsety * r + 'px');
-            this.style.backgroundSize = r === 1 ? 'auto' : s.width * r + 'px';
-          }
+        var parts = this.icon.split(':');
+        var icon = parts.pop();
+        var set = this.getIconset(parts.pop());
+        if (set) {
+          var scale = this.size / set.iconSize;
+          set.applyAsBackground(this, icon, this.activeTheme, scale);
         }
       }
 
