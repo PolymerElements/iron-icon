@@ -3,31 +3,45 @@ Copyright 2013 The Polymer Authors. All rights reserved.
 Use of this source code is governed by a BSD-style
 license that can be found in the LICENSE file.
 -->
-
 <!--
 /**
  *
  * @group Polymer Core Elements
  *
- * core-icon is a 24x24 glyph expressed as a background-image.
+ * The `core-icon` element displays an icon. By default it's size is
+ * 24px x 24px, and this can be customized via the `size` property. The icon is 
+ * displayed as a css background-image. There are two 
+ * ways to specify the icon to display. To display a single custom icon, the
+ * `src` attribute may be set to a url representing the icon resource. The 
+ * `core-icon` element can also be used to display one icon from a set of icons.
+ * A default set of icons is provided that includes: 
  *
- * Example:
+ * drawer, menu, search, dropdown, close, add, trash, refresh  settings,
+ * dialoga, left, right  down, up, grid, contact  account, plus, time, marker,
+ * briefcase, array, columns, list  modules, quilt, stream, maximize  shrink, 
+ * sort, shortcut, dialog  twitter, facebook, favorite, gplus  filter, tag, 
+ * plusone, dots
+
+ * Set the `icon` to the name or index of the icon in the set to display. 
+ * A custom `core-iconset` may also be specified. To do so, prepend the iconset
+ * name and a colon to the icon name.
+ * The `core-iconset` must be defined separately.
+ *
+ * Example using src:
  *
  *     <core-icon src="star.png"></core-icon>
  *
- * Optionally can use other size like 32x32 by setting the attribute "size" to "32":
+ * Optionally can use other size like 32x32 by setting the attribute "size" to
+ * "32":
  *
  *     <core-icon src="big_star.png" size="32"></core-icon>
  *
- * Polymer includes an icon set.  The property "icon" can be used
- * to specify which icon to use.
- *
- * Example:
+ * Example using icon:
  *
  *     <core-icon icon="menu"></core-icon>
  *
- * See <a href="core-iconset.html">core-iconset</a> on how to use
- * your own icon set.
+ * See <a href="core-iconset.html">core-iconset</a> for more information about 
+ * how to use a custom iconset.
  *
  * @element core-icon
  * @homepage github.io
@@ -53,7 +67,8 @@ license that can be found in the LICENSE file.
     Polymer('core-icon', {
 
       /**
-       * The URL of an image for the icon.
+       * The URL of an image for the icon. If the src property is specified,
+       * the icon property should not be.
        *
        * @attribute src
        * @type string
@@ -62,7 +77,7 @@ license that can be found in the LICENSE file.
       src: '',
 
       /**
-       * Specifies the size of the icon.
+       * Specifies the size of the icon in pixel units.
        *
        * @attribute size
        * @type string
@@ -71,7 +86,9 @@ license that can be found in the LICENSE file.
       size: 24,
 
       /**
-       * Specifies the icon from the icon set.
+       * Specifies the icon name or index in the set of icons available in
+       * the icon's icon set. If the icon property is specified,
+       * the src property should not be.
        *
        * @attribute icon
        * @type string
