@@ -6,11 +6,9 @@ license that can be found in the LICENSE file.
 
 <!--
 /**
-* Polymer UI Elements
-*
-* @module Polymer UI Elements
-*/  
-/**
+ *
+ * @group Polymer Core Elements
+ *
  * core-icon is a 24x24 glyph expressed as a background-image.
  *
  * Example:
@@ -31,22 +29,29 @@ license that can be found in the LICENSE file.
  * See <a href="core-iconset.html">core-iconset</a> on how to use
  * your own icon set.
  *
- * @class core-icon
+ * @element core-icon
+ * @homepage github.io
  */
 -->
-<link rel="import" href="../polymer/polymer.html">
+
 <link rel="import" href="../core-theme-aware/core-theme-aware.html">
 <link rel="import" href="../core-iconset/core-iconset.html">
 <link rel="import" href="core-icons.html">
 
 <polymer-element name="core-icon" extends="core-theme-aware" attributes="src size index icon">
+
   <template>
+
     <link rel="stylesheet" href="core-icon.css">
     <core-iconset id="meta"></core-iconset>
     <content></content>
+
   </template>
+
   <script>
+
     Polymer('core-icon', {
+
       /**
        * The URL of an image for the icon.
        *
@@ -55,6 +60,7 @@ license that can be found in the LICENSE file.
        * @default ''
        */
       src: '',
+
       /**
        * Specifies the size of the icon.
        *
@@ -63,6 +69,7 @@ license that can be found in the LICENSE file.
        * @default 24
        */
       size: 24,
+
       /**
        * Specifies the icon from the icon set.
        *
@@ -71,25 +78,32 @@ license that can be found in the LICENSE file.
        * @default ''
        */
       icon: '',
+
       defaultIconset: 'core-icons',
+
       observe: {
         icon: 'updateIcon',
         activeTheme: 'updateIcon'
       },
+
       ready: function() {
         this.sizeChanged();
       },
+
       sizeChanged: function() {
         this.style.width = this.style.height = this.size + 'px';
       },
+
       srcChanged: function() {
         this.style.backgroundImage = 'url(' + this.src + ')';
         this.style.backgroundPosition = 'center';
         this.style.backgroundSize = this.size + 'px ' + this.size + 'px';
       },
+
       getIconset: function(name) {
         return this.$.meta.byId(name || this.defaultIconset);
       },
+
       updateIcon: function() {
         if (!this.icon) {
           return;
@@ -109,6 +123,9 @@ license that can be found in the LICENSE file.
           }
         }
       }
+
     });
+
   </script>
+
 </polymer-element>
