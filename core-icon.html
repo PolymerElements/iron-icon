@@ -1,0 +1,114 @@
+<!--
+Copyright 2013 The Polymer Authors. All rights reserved.
+Use of this source code is governed by a BSD-style
+license that can be found in the LICENSE file.
+-->
+
+<!--
+/**
+* Polymer UI Elements
+*
+* @module Polymer UI Elements
+*/  
+/**
+ * core-icon is a 24x24 glyph expressed as a background-image.
+ *
+ * Example:
+ *
+ *     <core-icon src="star.png"></core-icon>
+ *
+ * Optionally can use other size like 32x32 by setting the attribute "size" to "32":
+ *
+ *     <core-icon src="big_star.png" size="32"></core-icon>
+ *
+ * Polymer includes an icon set.  The property "icon" can be used
+ * to specify which icon to use.
+ *
+ * Example:
+ *
+ *     <core-icon icon="menu"></core-icon>
+ *
+ * See <a href="core-iconset.html">core-iconset</a> on how to use
+ * your own icon set.
+ *
+ * @class core-icon
+ */
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-theme-aware/core-theme-aware.html">
+<link rel="import" href="../core-iconset/core-iconset.html">
+<link rel="import" href="core-icons.html">
+
+<polymer-element name="core-icon" extends="core-theme-aware" attributes="src size index icon">
+  <template>
+    <link rel="stylesheet" href="core-icon.css">
+    <core-iconset id="meta"></core-iconset>
+    <content></content>
+  </template>
+  <script>
+    Polymer('core-icon', {
+      /**
+       * The URL of an image for the icon.
+       *
+       * @attribute src
+       * @type string
+       * @default ''
+       */
+      src: '',
+      /**
+       * Specifies the size of the icon.
+       *
+       * @attribute size
+       * @type string
+       * @default 24
+       */
+      size: 24,
+      /**
+       * Specifies the icon from the icon set.
+       *
+       * @attribute icon
+       * @type string
+       * @default ''
+       */
+      icon: '',
+      defaultIconset: 'core-icons',
+      observe: {
+        icon: 'updateIcon',
+        activeTheme: 'updateIcon'
+      },
+      ready: function() {
+        this.sizeChanged();
+      },
+      sizeChanged: function() {
+        this.style.width = this.style.height = this.size + 'px';
+      },
+      srcChanged: function() {
+        this.style.backgroundImage = 'url(' + this.src + ')';
+        this.style.backgroundPosition = 'center';
+        this.style.backgroundSize = this.size + 'px ' + this.size + 'px';
+      },
+      getIconset: function(name) {
+        return this.$.meta.byId(name || this.defaultIconset);
+      },
+      updateIcon: function() {
+        if (!this.icon) {
+          return;
+        }
+        var a = this.icon.split(':');
+        var icon = a.pop();
+        var n = a.pop();
+        var s = this.getIconset(n);
+        if (s) {
+          var o = s.getOffset(icon, this.activeTheme);
+          if (o) {
+            var r = this.size / s.iconsize;
+            this.style.backgroundImage = 'url(' + s.src + ')';
+            this.style.backgroundPosition = 
+                (-o.offsetx * r + 'px') + ' ' + (-o.offsety * r + 'px');
+            this.style.backgroundSize = r === 1 ? 'auto' : s.width * r + 'px';
+          }
+        }
+      }
+    });
+  </script>
+</polymer-element>
