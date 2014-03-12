@@ -1,4 +1,4 @@
 core-icon
 =========
 
-Polymer Core Icon
+See //polymer.github.io/core-icon
