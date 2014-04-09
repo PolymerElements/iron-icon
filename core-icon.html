@@ -153,13 +153,13 @@ The default set of includes these icons:
       },
 
       updateIcon: function() {
-        if (!this.icon) {
+        if (!(this.icon && typeof this.icon === 'string')) {
           return;
         }
         var parts = this.icon.split(':');
         var icon = parts.pop();
         var set = this.getIconset(parts.pop());
-        if (set) {
+        if (set && icon) {
           var scale = this.size / set.iconSize;
           set.applyIcon(this, icon, this.activeTheme, scale);
         }
