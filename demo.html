@@ -14,50 +14,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <title>core-icon</title>
 
   <script src="../platform/platform.js"></script>
+  <link rel="import" href="demo-import.html">
   <link rel="import" href="core-icon.html">
 
 </head>
 <body unresolved>
 
-  <div>
-    <template repeat="{{}}">
-      <core-icon icon="{{}}"></core-icon>
-    </template>
-  </div>
-
-  <div theme="core-light-theme">
-    <template repeat="{{}}">
-      <core-icon icon="{{}}"></core-icon>
-    </template>
-  </div>
-
-  <div theme="core-dark-theme" style="background-color: #333;">
-    <template repeat="{{}}">
-      <core-icon icon="{{}}"></core-icon>
-    </template>
-  </div>
-
-  <br />
-
-  <div theme="core-light-theme">
-    <template repeat="{{}}">
-      <span style="display: inline-block; width: 164px; border: 1px dotted whitesmoke;">
-        <core-icon style="vertical-align: middle;" icon="{{}}"></core-icon> <span style="vertical-align: middle; font: bold 1em sans-serif;">{{}}</span>
-      </span>
-    </template>
-  </div>
-
-  <core-icon id="meta"></core-icon>
+  <template repeat="{{}}">
+    <core-icon icon="{{}}" size="48"></core-icon>
+    <span>{{}}</span>
+    <br>
+  </template>
 
   <script>
     addEventListener('polymer-ready', function() {
-      var icons = Object.keys(document.querySelector('#meta').getIconset().iconMap);
-      var plates = document.querySelectorAll('template');
-      for (var i = 0, p; p=plates[i]; i++) {
-        p.model = icons;
-      }
+      var template = document.querySelector('template');
+      template.model = [
+        'menu',
+        'fruit:cherry'
+      ];
     });
   </script>
-
 </body>
 </html>
