@@ -7,33 +7,29 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
-
 <html>
 <head>
-
   <title>core-icon</title>
-
   <script src="../platform/platform.js"></script>
-  <link rel="import" href="demo-import.html">
+  <link rel="import" href="../core-icons/core-icons.html">
   <link rel="import" href="core-icon.html">
-
+  
+  <style>
+    segment {
+      min-width: 200px;
+    }
+  </style>
 </head>
 <body unresolved>
 
-  <template repeat="{{}}">
-    <core-icon icon="{{}}" size="48"></core-icon>
-    <span>{{}}</span>
-    <br>
-  </template>
+<template is="auto-binding">
+  <div wrap horizontal layout>
+    <template repeat="{{icon in $.meta.metaData.icons.iconNames}}">
+      <segment><core-icon icon="{{icon}}"></core-icon> {{icon}}</segment>
+    </template>
+  </div>
+  <core-iconset id="meta"></core-iconset>
+</template>
 
-  <script>
-    addEventListener('polymer-ready', function() {
-      var template = document.querySelector('template');
-      template.model = [
-        'menu',
-        'fruit:cherry'
-      ];
-    });
-  </script>
 </body>
 </html>

@@ -36,94 +36,88 @@ See [core-icons](#core-icons) for the default set of icons.
 @extends core-theme-aware
 @homepage github.io
 -->
-
-<link rel="import" href="../core-theme-aware/core-theme-aware.html">
 <link rel="import" href="../core-iconset/core-iconset.html">
 
-<polymer-element name="core-icon" extends="core-theme-aware" attributes="src size icon">
+<link rel="stylesheet" href="core-icon.css" shim-shadowdom>
 
-  <template>
+<polymer-element name="core-icon" attributes="src size icon">
+<script>
+(function() {
+  
+  // mono-state
+  var meta;
+  
+  Polymer('core-icon', {
 
-    <link rel="stylesheet" href="core-icon.css">
-    <core-iconset id="meta"></core-iconset>
-    <content></content>
+    /**
+     * The URL of an image for the icon. If the src property is specified,
+     * the icon property should not be.
+     *
+     * @attribute src
+     * @type string
+     * @default ''
+     */
+    src: '',
 
-  </template>
+    /**
+     * Specifies the size of the icon in pixel units.
+     *
+     * @attribute size
+     * @type string
+     * @default 24
+     */
+    size: 24,
 
-  <script>
+    /**
+     * Specifies the icon name or index in the set of icons available in
+     * the icon's icon set. If the icon property is specified,
+     * the src property should not be.
+     *
+     * @attribute icon
+     * @type string
+     * @default ''
+     */
+    icon: '',
 
-    Polymer('core-icon', {
+    defaultIconset: 'icons',
 
-      /**
-       * The URL of an image for the icon. If the src property is specified,
-       * the icon property should not be.
-       *
-       * @attribute src
-       * @type string
-       * @default ''
-       */
-      src: '',
+    ready: function() {
+      if (!meta) {
+        meta = document.createElement('core-iconset');
+      }
+      this.sizeChanged();
+    },
 
-      /**
-       * Specifies the size of the icon in pixel units.
-       *
-       * @attribute size
-       * @type string
-       * @default 24
-       */
-      size: 24,
+    sizeChanged: function() {
+      this.style.width = this.style.height = this.size + 'px';
+    },
 
-      /**
-       * Specifies the icon name or index in the set of icons available in
-       * the icon's icon set. If the icon property is specified,
-       * the src property should not be.
-       *
-       * @attribute icon
-       * @type string
-       * @default ''
-       */
-      icon: '',
+    srcChanged: function() {
+      this.style.backgroundImage = 'url(' + this.src + ')';
+      this.style.backgroundPosition = 'center';
+      this.style.backgroundSize = this.size + 'px ' + this.size + 'px';
+    },
 
-      defaultIconset: 'icons',
+    getIconset: function(name) {
+      return meta.byId(name || this.defaultIconset);
+    },
 
-      observe: {
-        icon: 'updateIcon',
-        activeTheme: 'updateIcon'
-      },
-
-      ready: function() {
-        this.sizeChanged();
-      },
-
-      sizeChanged: function() {
-        this.style.width = this.style.height = this.size + 'px';
-      },
-
-      srcChanged: function() {
-        this.style.backgroundImage = 'url(' + this.src + ')';
-        this.style.backgroundPosition = 'center';
-        this.style.backgroundSize = this.size + 'px ' + this.size + 'px';
-      },
-
-      getIconset: function(name) {
-        return this.$.meta.byId(name || this.defaultIconset);
-      },
-
-      updateIcon: function() {
-        if (!(this.icon && typeof this.icon === 'string')) {
-          return;
-        }
-        var parts = this.icon.split(':');
+    iconChanged: function() {
+      if (this.icon) {
+        var parts = String(this.icon).split(':');
         var icon = parts.pop();
-        var set = this.getIconset(parts.pop());
-        if (set && icon) {
-          var scale = this.size / set.iconSize;
-          set.applyIcon(this, icon, this.activeTheme, scale);
+        if (icon) {
+          var set = this.getIconset(parts.pop());
+          if (set) {
+            set.applyIcon(this, icon, this.activeTheme, this.size / set.iconSize);
+          }
         }
       }
+    }
 
-    });
-
-  </script>
+  });
+  
+})();
+</script>
 
 </polymer-element>
