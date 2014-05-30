@@ -79,17 +79,17 @@ See [core-icons](#core-icons) for the default set of icons.
      */
     icon: '',
 
+    observe: {
+      'size icon': 'updateIcon'
+    },
+
     defaultIconset: 'icons',
 
     ready: function() {
       if (!meta) {
         meta = document.createElement('core-iconset');
       }
-      this.sizeChanged();
-    },
-
-    sizeChanged: function() {
-      this.style.width = this.style.height = this.size + 'px';
+      this.updateIcon();
     },
 
     srcChanged: function() {
@@ -102,14 +102,15 @@ See [core-icons](#core-icons) for the default set of icons.
       return meta.byId(name || this.defaultIconset);
     },
 
-    iconChanged: function() {
+    updateIcon: function() {
+      this.style.width = this.style.height = this.size + 'px';
       if (this.icon) {
         var parts = String(this.icon).split(':');
         var icon = parts.pop();
         if (icon) {
           var set = this.getIconset(parts.pop());
           if (set) {
-            set.applyIcon(this, icon, this.activeTheme, this.size / set.iconSize);
+            set.applyIcon(this, icon, this.size / set.iconSize);
           }
         }
       }
