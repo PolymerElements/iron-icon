@@ -102,7 +102,7 @@ See [core-icons](#core-icons) for the default set of icons. To use the default s
     },
 
     updateIcon: function() {
-      this.style.width = this.style.height = this.size + 'px';
+      this.style.width = this.style.height = this.size ? this.size + 'px' : '';
       if (this.icon) {
         var parts = String(this.icon).split(':');
         var icon = parts.pop();
