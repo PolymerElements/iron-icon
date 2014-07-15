@@ -8,7 +8,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <!--
 
-The `core-icon` element displays an icon using CSS background image. By default an icon renders as 24px square.
+The `core-icon` element displays an icon. By default an icon renders as 24px square.
 
 Example using src:
 
@@ -16,7 +16,14 @@ Example using src:
 
 Example setting size to 32px x 32px:
 
-    <core-icon src="big_star.png" size="32"></core-icon>
+    <core-icon class="big" src="big_star.png"></core-icon>
+
+    <style>
+      .big {
+        height: 32px;
+        width: 32px;
+      }
+    </style>
 
 Example using icon from default iconset:
 
@@ -39,7 +46,7 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
 
 <link rel="stylesheet" href="core-icon.css" shim-shadowdom>
 
-<polymer-element name="core-icon" attributes="src size icon">
+<polymer-element name="core-icon" attributes="src icon">
 <script>
 (function() {
   
@@ -59,15 +66,6 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
     src: '',
 
     /**
-     * Specifies the size of the icon in pixel units.
-     *
-     * @attribute size
-     * @type string
-     * @default 24
-     */
-    size: 24,
-
-    /**
      * Specifies the icon name or index in the set of icons available in
      * the icon's icon set. If the icon property is specified,
      * the src property should not be.
@@ -79,7 +77,7 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
     icon: '',
 
     observe: {
-      'size icon': 'updateIcon'
+      'icon': 'updateIcon'
     },
 
     defaultIconset: 'icons',
@@ -92,9 +90,16 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
     },
 
     srcChanged: function() {
-      this.style.backgroundImage = 'url(' + this.src + ')';
-      this.style.backgroundPosition = 'center';
-      this.style.backgroundSize = this.size + 'px ' + this.size + 'px';
+      var icon = this._icon || document.createElement('div');
+      icon.textContent = '';
+      icon.setAttribute('fit', '');
+      icon.style.backgroundImage = 'url(' + this.src + ')';
+      icon.style.backgroundPosition = 'center';
+      icon.style.backgroundSize = '100%';
+      if (!icon.parentNode) {
+        this.appendChild(icon);
+      }
+      this._icon = icon;
     },
 
     getIconset: function(name) {
@@ -102,16 +107,17 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
     },
 
     updateIcon: function() {
-      if (this.size) {
-        this.style.width = this.style.height = this.size + 'px';
+      if (!this.icon) {
+        return;
       }
-      if (this.icon) {
-        var parts = String(this.icon).split(':');
-        var icon = parts.pop();
-        if (icon) {
-          var set = this.getIconset(parts.pop());
-          if (set) {
-            set.applyIcon(this, icon, this.size / set.iconSize);
+      var parts = String(this.icon).split(':');
+      var icon = parts.pop();
+      if (icon) {
+        var set = this.getIconset(parts.pop());
+        if (set) {
+          this._icon = set.applyIcon(this, icon);
+          if (this._icon) {
+            this._icon.setAttribute('fit', '');
           }
         }
       }
