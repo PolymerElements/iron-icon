@@ -4,5 +4,8 @@
   "dependencies": {
     "core-iconset": "Polymer/core-iconset#master",
     "core-icons": "Polymer/core-icons#master"
+  },
+  "devDependencies": {
+    "simple-fixture": "simple-elements/simple-fixture"
   }
 }
