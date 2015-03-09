@@ -17,29 +17,33 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
   <script src="../../web-component-tester/browser.js"></script>
-  <script src="../../simple-fixture/simple-fixture-mocha.js"></script>
+  <script src="../../test-fixture/test-fixture-mocha.js"></script>
 
   <link rel="import" href="../core-icon.html">
   <link rel="import" href="../../core-iconset/core-iconset.html">
-  <link rel="import" href="../../simple-fixture/simple-fixture.html">
+  <link rel="import" href="../../test-fixture/test-fixture.html">
 
 </head>
 <body>
 
-  <simple-fixture id="TrivialIcon">
+  <test-fixture id="TrivialIcon">
     <template>
       <core-icon src="../demo/location.png"></core-icon>
     </template>
-  </simple-fixture>
+  </test-fixture>
 
-  <simple-fixture id="IconFromIconset">
+  <test-fixture id="IconFromIconset">
     <template>
       <core-iconset name="example" icons="location blank" src="location.png" size="24" width="48"></core-iconset>
       <core-icon icon="example:location"></core-icon>
     </template>
-  </simple-fixture>
+  </test-fixture>
 
   <script>
+function firstElementChild(node) {
+  return Polymer.dom.childNodes(node)[0];
+}
+
 suite('<core-icon>', function () {
   suite('basic behavior', function () {
     var icon;
@@ -49,14 +53,14 @@ suite('<core-icon>', function () {
     });
 
     test('can be assigned an icon with the src attribute', function () {
-      expect(icon.firstElementChild).to.be.ok;
-      expect(icon.firstElementChild.src).to.match(/demo\/location\.png/);
+      expect(firstElementChild(icon)).to.be.ok;
+      expect(firstElementChild(icon).src).to.match(/demo\/location\.png/);
     });
 
     test('can change its src dynamically', function () {
       icon.src = 'foo.png';
 
-      expect(icon.firstElementChild.src).to.match(/foo\.png/);
+      expect(firstElementChild(icon).src).to.match(/foo\.png/);
     });
   });
 
@@ -70,12 +74,12 @@ suite('<core-icon>', function () {
     });
 
     test('can be assigned an icon from the iconset', function () {
-      expect(icon.firstElementChild).to.be.ok;
-      expect(icon.firstElementChild.nodeName).to.be.eql('DIV');
+      expect(firstElementChild(icon)).to.be.ok;
+      expect(firstElementChild(icon).nodeName).to.be.eql('DIV');
     });
 
     test('can change its icon dynamically', function () {
-      var style = icon.firstElementChild.style;
+      var style = firstElementChild(icon).style;
 
       expect(style.backgroundPositionX).to.be.eql('0px');
 

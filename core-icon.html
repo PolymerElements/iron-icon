@@ -56,11 +56,10 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
 @element core-icon
 @homepage polymer.github.io
 -->
-<link rel="import" href="../core-iconset/core-iconset.html">
 <link rel="import" href="../core-meta/core-meta.html">
 <dom-module id="core-icon">
   <style>
-    core-icon {
+    :host {
       display: inline-flex;
       position: relative;
       fill: currentcolor;
@@ -72,66 +71,59 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
       height: 24px;
     }
 
-    core-icon > div {
+    div {
       display: block;
       position: relative;
     }
 
-    core-icon > svg {
+    svg {
       display: block;
       width: 100%;
       height: 100%;
     }
   </style>
+  <template>
+    <core-meta id="meta" type="iconset"></core-meta>
+  </template>
 </dom-module>
 <script>
   Polymer({
     is: 'core-icon',
 
-    published: {
-      src: String,
-      icon: String,
-      theme: String
-    },
+    properties: {
+      src: {
+        type: String,
+        value: '',
+        observer: 'srcChanged'
+      },
 
-    configure: function () {
-      // TODO(cdata): Do this declaratively someday when more browsers natively
-      // support ShadowDOM and the performance downside of creating a shadow
-      // is no longer as weighty. Maybe never? :)
-      var meta = document.createElement('core-meta');
-      meta.type = 'iconset';
+      icon: {
+        type: String,
+        value: '',
+        observer: 'updateIcon'
+      },
 
-      return {
-        src: '',
-        icon: '',
-        theme: '',
-        meta: meta,
-        srcImgElement: null
-      };
-    },
+      theme: {
+        type: String,
+        value: '',
+        observer: 'updateIcon'
+      },
 
-    bind: {
-      icon: 'iconChanged',
-      theme: 'iconChanged',
-      src: 'srcChanged'
-    },
+      srcImgElement: {
+        value: null
+      },
 
-    computed: {
-      iconset: 'computeIconset(icon)'
-    },
+      iconset: {
+        value: ''
+      },
 
-    defaultIconset: 'icons',
-
-    ready: function () {
-      this._afterReady = true;
-
-      if (this.src) {
-        this.srcChanged();
+      defaultIconset: {
+        value: 'icons'
       }
+    },
 
-      if (this.icon) {
-        this.iconChanged();
-      }
+    get meta () {
+      return this.$.meta;
     },
 
     get iconsetElement () {
@@ -155,7 +147,7 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
     },
 
     get usesSrcAttribute () {
-      return !this.icon || this.src;
+      return !this.icon && this.src;
     },
 
     computeIconset: function (icon) {
@@ -168,31 +160,24 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
       return iconset || this.defaultIconset;
     },
 
-    iconChanged: function () {
-      if (!this._afterReady) {
-        return;
-      }
-
+    updateIcon: function () {
       if (this.usesSrcAttribute) {
         return;
       }
 
-      this.iconsetElement.applyIcon(this, this.iconName, this.theme);
+      this.iconset = this.computeIconset();
+      this.iconsetElement.applyIcon(this.root, this.iconName, this.theme);
     },
 
     srcChanged: function () {
       var currentIconChild;
 
-      if (!this._afterReady) {
-        return;
-      }
-
       if (!this.usesSrcAttribute) {
         return;
       }
 
-      if (currentIconChild = this.lightDom.querySelector('div')) {
-        this.lightDom.removeChild(currentIconChild);
+      if (currentIconChild = Polymer.dom.querySelector('div', this.root)) {
+        Polymer.dom.removeChild(currentIconChild, this.root);
       }
 
       if (!this.srcImgElement) {
@@ -200,7 +185,7 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
       }
 
       this.srcImgElement.src = this.src;
-      this.lightDom.appendChild(this.srcImgElement);
+      Polymer.dom.appendChild(this.srcImgElement, this.root);
     }
   });
 </script>
