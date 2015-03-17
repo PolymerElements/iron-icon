@@ -88,105 +88,105 @@ See [core-icons](http://www.polymer-project.org/components/core-icons/demo.html)
   </template>
 </dom-module>
 <script>
-  Polymer({
-    is: 'core-icon',
+  (function() {
+    var DEFAULT_ICONSET = 'icons'
 
-    properties: {
-      src: {
-        type: String,
-        value: '',
-        observer: 'srcChanged'
+    Polymer({
+      is: 'core-icon',
+
+      properties: {
+        src: {
+          type: String,
+          value: '',
+          observer: 'srcChanged'
+        },
+
+        icon: {
+          type: String,
+          value: '',
+          observer: 'updateIcon'
+        },
+
+        theme: {
+          type: String,
+          value: '',
+          observer: 'updateIcon'
+        },
+
+        srcImgElement: {
+          value: null
+        },
+
+        iconset: {
+          value: ''
+        }
       },
 
-      icon: {
-        type: String,
-        value: '',
-        observer: 'updateIcon'
+      get meta () {
+        return this.$.meta;
       },
 
-      theme: {
-        type: String,
-        value: '',
-        observer: 'updateIcon'
+      get iconsetElement () {
+        var iconsetElement;
+
+        if (this.icon) {
+          iconsetElement = this.meta.byKey(
+            this.computeIconset(this.icon)
+          );
+        }
+
+        return iconsetElement;
       },
 
-      srcImgElement: {
-        value: null
+      get iconName () {
+        if (this.icon) {
+          return this.icon.split(':').pop();
+        }
+
+        return '';
       },
 
-      iconset: {
-        value: ''
+      get usesSrcAttribute () {
+        return !this.icon && this.src;
       },
 
-      defaultIconset: {
-        value: 'icons'
+      computeIconset: function (icon) {
+        var iconset;
+
+        if (icon && icon.indexOf(':') > -1) {
+          iconset = icon.split(':').shift();
+        }
+
+        return iconset || DEFAULT_ICONSET;
+      },
+
+      updateIcon: function () {
+        if (this.usesSrcAttribute) {
+          return;
+        }
+
+        this.iconset = this.computeIconset();
+        this.iconsetElement.applyIcon(this.root, this.iconName, this.theme);
+      },
+
+      srcChanged: function () {
+        var currentIconChild;
+
+        if (!this.usesSrcAttribute) {
+          return;
+        }
+
+        if (currentIconChild = Polymer.dom(this.root).querySelector('div')) {
+          Polymer.dom(this.root).removeChild(currentIconChild);
+        }
+
+        if (!this.srcImgElement) {
+          this.srcImgElement = document.createElement('img');
+        }
+
+        this.srcImgElement.src = this.src;
+        Polymer.dom(this.root).appendChild(this.srcImgElement);
       }
-    },
-
-    get meta () {
-      return this.$.meta;
-    },
-
-    get iconsetElement () {
-      var iconsetElement;
-
-      if (this.icon) {
-        iconsetElement = this.meta.byKey(
-          this.computeIconset(this.icon)
-        );
-      }
-
-      return iconsetElement;
-    },
-
-    get iconName () {
-      if (this.icon) {
-        return this.icon.split(':').pop();
-      }
-
-      return '';
-    },
-
-    get usesSrcAttribute () {
-      return !this.icon && this.src;
-    },
-
-    computeIconset: function (icon) {
-      var iconset;
-
-      if (icon && icon.indexOf(':') > -1) {
-        iconset = icon.split(':').shift();
-      }
-
-      return iconset || this.defaultIconset;
-    },
-
-    updateIcon: function () {
-      if (this.usesSrcAttribute) {
-        return;
-      }
-
-      this.iconset = this.computeIconset();
-      this.iconsetElement.applyIcon(this.root, this.iconName, this.theme);
-    },
-
-    srcChanged: function () {
-      var currentIconChild;
-
-      if (!this.usesSrcAttribute) {
-        return;
-      }
-
-      if (currentIconChild = Polymer.dom(this.root).querySelector('div')) {
-        Polymer.dom(this.root).removeChild(currentIconChild);
-      }
-
-      if (!this.srcImgElement) {
-        this.srcImgElement = document.createElement('img');
-      }
-
-      this.srcImgElement.src = this.src;
-      Polymer.dom(this.root).appendChild(this.srcImgElement);
-    }
-  });
+    });
+  })();
 </script>
