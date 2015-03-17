@@ -40,8 +40,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </test-fixture>
 
   <script>
-function firstElementChild(node) {
-  return Polymer.dom.childNodes(node)[0];
+function iconElementFor (node) {
+  var nodes = Polymer.dom(node.root).childNodes;
+
+  for (var i = 0; i < nodes.length; ++i) {
+    if (nodes[i].nodeName.match(/DIV|IMG/)) {
+      return nodes[i];
+    }
+  }
 }
 
 suite('<core-icon>', function () {
@@ -53,14 +59,14 @@ suite('<core-icon>', function () {
     });
 
     test('can be assigned an icon with the src attribute', function () {
-      expect(firstElementChild(icon)).to.be.ok;
-      expect(firstElementChild(icon).src).to.match(/demo\/location\.png/);
+      expect(iconElementFor(icon)).to.be.ok;
+      expect(iconElementFor(icon).src).to.match(/demo\/location\.png/);
     });
 
     test('can change its src dynamically', function () {
       icon.src = 'foo.png';
 
-      expect(firstElementChild(icon).src).to.match(/foo\.png/);
+      expect(iconElementFor(icon).src).to.match(/foo\.png/);
     });
   });
 
@@ -74,12 +80,12 @@ suite('<core-icon>', function () {
     });
 
     test('can be assigned an icon from the iconset', function () {
-      expect(firstElementChild(icon)).to.be.ok;
-      expect(firstElementChild(icon).nodeName).to.be.eql('DIV');
+      expect(iconElementFor(icon)).to.be.ok;
+      expect(iconElementFor(icon).nodeName).to.be.eql('DIV');
     });
 
     test('can change its icon dynamically', function () {
-      var style = firstElementChild(icon).style;
+      var style = iconElementFor(icon).style;
 
       expect(style.backgroundPositionX).to.be.eql('0px');
 
