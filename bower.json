@@ -1,12 +1,16 @@
 {
-  "name": "core-icon",
+  "name": "iron-icon",
   "private": true,
   "dependencies": {
-    "core-meta": "polymer/core-meta#0.8-preview"
+    "iron-meta": "polymerelements/iron-meta#^0.8.0",
+    "polymer": "polymer/polymer#v0.8.0-rc.4"
   },
   "devDependencies": {
-    "test-fixture": "polymer/test-fixture",
-    "core-iconset": "Polymer/core-iconset#0.8-preview",
-    "core-icons": "Polymer/core-icons#0.8-preview"
+    "test-fixture": "polymerelements/test-fixture#^0.8.0",
+    "iron-iconset": "polymerelements/iron-iconset#^0.8.0",
+    "core-icons": "polymerelements/iron-icons#^0.8.0",
+    "iron-doc-viewer": "polymerelements/iron-doc-viewer",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.6.0",
+    "web-component-tester": "~2.2.6"
   }
 }
