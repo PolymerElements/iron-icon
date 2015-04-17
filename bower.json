@@ -9,7 +9,7 @@
     "test-fixture": "polymerelements/test-fixture#^0.8.0",
     "iron-iconset": "polymerelements/iron-iconset#^0.8.0",
     "core-icons": "polymerelements/iron-icons#^0.8.0",
-    "iron-doc-viewer": "polymerelements/iron-doc-viewer",
+    "iron-doc-viewer": "polymerelements/iron-doc-viewer#^0.8.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.6.0",
     "web-component-tester": "~2.2.6"
   }
