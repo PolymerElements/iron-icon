@@ -39,6 +39,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="WithoutAnIconSource">
+    <template>
+      <iron-icon icon=""></iron-icon>
+      <iron-icon></iron-icon>
+      <iron-icon src=""></iron-icon>
+    </template>
+  </test-fixture>
+
   <script>
 function iconElementFor (node) {
   var nodes = Polymer.dom(node.root).childNodes;
@@ -54,40 +62,40 @@ function hasIcon (node) {
   return /png/.test(node.style.backgroundImage);
 }
 
-suite('<iron-icon>', function () {
-  suite('basic behavior', function () {
+suite('<iron-icon>', function() {
+  suite('basic behavior', function() {
     var icon;
 
-    setup(function () {
+    setup(function() {
       icon = fixture('TrivialIcon');
     });
 
-    test('can be assigned an icon with the src attribute', function () {
+    test('can be assigned an icon with the src attribute', function() {
       expect(iconElementFor(icon)).to.be.ok;
       expect(iconElementFor(icon).src).to.match(/demo\/location\.png/);
     });
 
-    test('can change its src dynamically', function () {
+    test('can change its src dynamically', function() {
       icon.src = 'foo.png';
 
       expect(iconElementFor(icon).src).to.match(/foo\.png/);
     });
   });
 
-  suite('when paired with an iconset', function () {
+  suite('when paired with an iconset', function() {
     var icon;
 
-    setup(function () {
+    setup(function() {
       var elements = fixture('IconFromIconset');
 
       icon = elements[1];
     });
 
-    test('can be assigned an icon from the iconset', function () {
+    test('can be assigned an icon from the iconset', function() {
       expect(hasIcon(icon)).to.be.ok;
     });
 
-    test('can change its icon dynamically', function () {
+    test('can change its icon dynamically', function() {
       var style = icon.style;
 
       expect(style.backgroundPositionX).to.be.eql('0px');
@@ -97,6 +105,13 @@ suite('<iron-icon>', function () {
       expect(style.backgroundPositionX).to.be.eql('-24px');
     });
   });
+
+  suite('when no icon source is provided', function() {
+    test('will politely wait for an icon source without throwing', function() {
+      document.createElement('iron-icon');
+      fixture('WithoutAnIconSource');
+    });
+  })
 });
   </script>
 
