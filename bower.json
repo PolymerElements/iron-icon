@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "iron-meta": "polymerelements/iron-meta#^0.8.0",
-    "polymer": "polymer/polymer#v0.8.0-rc.4"
+    "polymer": "polymer/polymer#v0.8.0-rc.5"
   },
   "devDependencies": {
     "test-fixture": "polymerelements/test-fixture#^0.8.0",
