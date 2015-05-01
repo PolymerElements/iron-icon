@@ -6,6 +6,7 @@
     "The Polymer Authors"
   ],
   "dependencies": {
+    "iron-flex-layout": "polymerelements/iron-flex-layout#^0.8.0",
     "iron-meta": "polymerelements/iron-meta#^0.8.0",
     "polymer": "polymer/polymer#v0.8.0-rc.7"
   },
