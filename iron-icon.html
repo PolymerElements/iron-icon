@@ -59,6 +59,7 @@ See [iron-icons](http://www.polymer-project.org/components/iron-icons/demo.html)
 
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-meta/iron-meta.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 
 <style is="x-style">
   * {
@@ -70,12 +71,10 @@ See [iron-icons](http://www.polymer-project.org/components/iron-icons/demo.html)
 
   <style>
     :host {
-      display: inline-flex;
+      mixin(--layout-inline --layout-center-center);
       position: relative;
 
       vertical-align: middle;
-      align-items: center;
-      justify-content: center;
 
       fill: currentcolor;
 
