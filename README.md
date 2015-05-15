@@ -47,9 +47,12 @@ Here's an example that selects the "menu" icon from the set of icons in iron-ico
 
     <link rel="import" href="/components/iron-icons/iron-icons.html">
 
-    <iron-icon icon="iron:menu"></iron-icon>
+    <iron-icon icon="menu"></iron-icon>
 
-TIP: Polymer's default set of icons is iron-icons. If you select an icon from this set, you can specify just the name of the icon as the value of the `icon` attribute.  
+Tip: Polymer's default set of icons is located in iron-icons/iron-icons.html. If you select an icon from this set, you can specify just the name of the icon as the value of the `icon` attribute. 
+
+Warning: If you want to include the name of the `<iconset>` for iron-icons/iron-icons.html, the name that `<iron-icon>` expects is `icons`. So the above example would be `icon="icons:menu`. For every other set of icons in iron-icons, the name of the `<iconset>` is the word before the hypen in the name of an HTML file. The next example elaborates on this point. 
+
 
 Here's an example that selects the "email" icon from the set of icons in iron-icons/communications-icons.html:
 
