@@ -1,15 +1,9 @@
-iron-icon
-=========
+# iron-icon
 
-The `iron-icon` element displays an icon. By default an icon renders as a 24px square.
+The `<iron-icon>` element displays an icon.
 
-Example using src:
-
-    <iron-icon src="star.png"></iron-icon>
-
-Example setting size to 32px x 32px:
-
-    <iron-icon class="big" src="big_star.png"></iron-icon>
+## How to style an iron-icon
+The default style of an `<iron-icon>` can be changed with CSS. Here's an example that changes the default size of an iron-icon from 24px-by-24px to 32px-by-32px:
 
     <style>
       .big {
@@ -18,29 +12,51 @@ Example setting size to 32px x 32px:
       }
     </style>
 
-The iron elements include several sets of icons.
-To use the default set of icons, import  `iron-icons.html` and use the `icon` attribute to specify an icon:
+    <iron-icon class="big" src="star.png"></iron-icon>
 
-    &lt;!-- import default iconset and iron-icon --&gt;
+## How to display an iron-icon
+An `<iron-icon>` can be displayed using one of two attributes: `src` or `icon`.
+
+An example using the `src` attribute:
+
+    &lt;!-- step 1 of 2: import iron-icon --&gt;
+    <link rel="import" href="/components/iron-icon/iron-icon.html">
+    
+    &lt;!-- step 2 of 2: specify a path to an image --&gt;
+    <iron-icon src="<image>"></iron-icon>
+
+Here's an example that loads an image from the same directory: 
+
+    <link rel="import" href="/components/iron-icon/iron-icon.html">
+
+    <iron-icon src="star.png"></iron-icon>
+
+An example using the `icon` attribute:
+    
+    &lt;!-- step 1 of 2: import a set of icons --&gt;
+    <link rel="import" href="/components/iron-icons/<iconset>-icons.html">
+
+    &lt;!-- step 2 of 2: specify an iconset and an icon of the set --&gt;
+    <iron-icon icon="<iconset>:<icon>"></iron-icon> 
+
+Polymer includes several sets of icons. Each of these sets are placed inside of an HTML file of [iron-icons](#iron-icons). (Notice that icons is pluralized!)
+
+Tip: Whenever you import a set of icons from `iron-icons`, you're also indirectly importing `iron-icon`. In other words, if you import `iron-icons` in a file, you don't have to explicitly import `iron-icon`.
+
+Here's an example that selects the "menu" icon from the set of icons in iron-icons/iron-icons.html:
+
     <link rel="import" href="/components/iron-icons/iron-icons.html">
 
-    <iron-icon icon="menu"></iron-icon>
+    <iron-icon icon="iron:menu"></iron-icon>
 
-To use a different built-in set of icons, import  `iron-icons/<iconset>-icons.html`, and
-specify the icon as `<iconset>:<icon>`. For example:
+TIP: Polymer's default set of icons is iron-icons. If you select an icon from this set, you can specify just the name of the icon as the value of the `icon` attribute.  
 
-    &lt;!-- import communication iconset and iron-icon --&gt;
+Here's an example that selects the "email" icon from the set of icons in iron-icons/communications-icons.html:
+
     <link rel="import" href="/components/iron-icons/communication-icons.html">
 
     <iron-icon icon="communication:email"></iron-icon>
 
-You can also create custom icon sets of bitmap or SVG icons.
+Extra: To create your own set of icons, explore [iron-iconset](#iron-iconset) for bitmap icons and [iron-iconset-svg](#iron-iconset-svg) for SVG icons. 
 
-Example of using an icon named `cherry` from a custom iconset with the ID `fruit`:
-
-    <iron-icon icon="fruit:cherry"></iron-icon>
-
-See [iron-iconset](#iron-iconset) and [iron-iconset-svg](#iron-iconset-svg) for more information about
-how to create a custom iconset.
-
-See [iron-icons](http://www.polymer-project.org/components/iron-icons/demo.html) for the default set of icons.
+Extra: To view Polymer's provided set of icons, explore [iron-icons](#iron-icons)
