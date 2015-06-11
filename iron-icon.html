@@ -75,13 +75,6 @@ Custom property | Description | Default
 @homepage polymer.github.io
 -->
 
-<style is="custom-style">
-  :root {
-    --iron-icon-width: 24px;
-    --iron-icon-height: 24px;
-  }
-</style>
-
 <dom-module id="iron-icon">
 
   <style>
@@ -94,8 +87,8 @@ Custom property | Description | Default
 
       fill: currentcolor;
 
-      width: var(--iron-icon-width);
-      height: var(--iron-icon-height);
+      width: var(--iron-icon-width, 24px);
+      height: var(--iron-icon-height, 24px);
     }
   </style>
 
@@ -184,4 +177,3 @@ Custom property | Description | Default
   </script>
 
 </dom-module>
-
