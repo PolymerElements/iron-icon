@@ -13,6 +13,10 @@
     "polymer",
     "icon"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/iron-icon.git"
+  },
   "dependencies": {
     "iron-flex-layout": "polymerelements/iron-flex-layout#^1.0.0",
     "iron-meta": "polymerelements/iron-meta#^1.0.0",
