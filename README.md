@@ -53,4 +53,4 @@ Example of using an icon named `cherry` from a custom iconset with the ID `fruit
 See [iron-iconset](#iron-iconset) and [iron-iconset-svg](#iron-iconset-svg) for more information about
 how to create a custom iconset.
 
-See [iron-icons](http://www.polymer-project.org/components/iron-icons/demo.html) for the default set of icons.
+See [iron-icons](https://elements.polymer-project.org/elements/iron-icons?view=demo:demo/index.html) for the default set of icons.
