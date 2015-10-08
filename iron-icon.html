@@ -30,6 +30,16 @@ Example setting size to 32px x 32px:
         --iron-icon-width: 32px;
       }
     </style>
+    
+Example changing color to green:
+
+    <iron-icon class="big" src="big_star.png"></iron-icon>
+
+    <style is="custom-style">
+      .green {
+        --iron-icon-color: green;
+      }
+    </style>
 
 The iron elements include several sets of icons.
 To use the default set of icons, import `iron-icons.html` and use the `icon` attribute to specify an icon:
@@ -63,10 +73,11 @@ in the various iconsets.
 
 The following custom properties are available for styling:
 
-Custom property | Description | Default
-----------------|-------------|----------
-`--iron-icon-width` | Width of the icon | `24px`
+Custom property      | Description        | Default
+---------------------|--------------------|----------
+`--iron-icon-width`  | Width of the icon  | `24px`
 `--iron-icon-height` | Height of the icon | `24px`
+`--iron-icon-color`  | Color of the icon  | `inherit`
 
 @group Iron Elements
 @element iron-icon
@@ -89,6 +100,7 @@ Custom property | Description | Default
 
       width: var(--iron-icon-width, 24px);
       height: var(--iron-icon-height, 24px);
+      color: var(--iron-icon-color, inherit);
     }
   </style>
 
