@@ -29,7 +29,7 @@
     "iron-iconset": "polymerelements/iron-iconset#^1.0.0",
     "iron-icons": "polymerelements/iron-icons#^1.0.0",
     "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
-    "web-component-tester": "*",
+    "web-component-tester": "^4.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
   }
 }
