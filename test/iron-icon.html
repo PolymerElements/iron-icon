@@ -24,6 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../iron-iconset/iron-iconset.html">
   <link rel="import" href="../../promise-polyfill/promise-polyfill.html">
   <link rel="import" href="../../test-fixture/test-fixture.html">
+  <link rel="import" href="icon-holder.html">
 
 </head>
 <body>
@@ -65,6 +66,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template>
       <iron-iconset name="example" icons="location blank" src="location.png" size="24" width="48"></iron-iconset>
       <iron-icon></iron-icon>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="ParentForceUpdate">
+    <template>
+      <icon-holder>
+        <iron-icon></iron-icon>
+      </icon-holder>
     </template>
   </test-fixture>
 
@@ -197,6 +206,11 @@ suite('<iron-icon>', function() {
       icon.icon = null;
       expect(hasIcon(icon)).to.be.false;
       expect(iconElementFor(icon)).to.not.exist;
+    });
+  });
+  suite('ancestor direct updates', function() {
+    test('handle properties set before ready', function() {
+      var holder = fixture('ParentForceUpdate');
     });
   });
 });

@@ -142,7 +142,8 @@ Custom property | Description | Default
          * @type {!Polymer.IronMeta}
          */
         _meta: {
-          value: Polymer.Base.create('iron-meta', {type: 'iconset'})
+          value: Polymer.Base.create('iron-meta', {type: 'iconset'}),
+          observer: '_updateIcon'
         }
 
       },
@@ -174,7 +175,7 @@ Custom property | Description | Default
             if (this._iconset) {
               this._iconset.removeIcon(this);
             }
-          } else if (this._iconsetName) {
+          } else if (this._iconsetName && this._meta) {
             this._iconset = /** @type {?Polymer.Iconset} */ (
               this._meta.byKey(this._iconsetName));
             if (this._iconset) {
