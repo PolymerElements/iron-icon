@@ -213,6 +213,56 @@ suite('<iron-icon>', function() {
       var holder = fixture('ParentForceUpdate');
     });
   });
+
+  suite('accessibility', function() {
+    suite('accessibility tests for an Trivial Icon', function() {
+      var icon;
+
+      setup(function() {
+        icon = fixture('TrivialIcon');
+      });
+
+      test('img has no alt text by default', function() {
+        var img = iconElementFor(icon);
+        assert.isFalse(img.hasAttribute('alt'));
+      });
+      test('img alt text is empty string when iron-icon alt text is empty string', function() {
+        var img = iconElementFor(icon);
+        icon.alt = '';
+        assert.isTrue(img.hasAttribute('alt'));
+        assert.strictEqual(img.getAttribute('alt'), '');
+      });
+      test('img alt text matches iron-icon alt text when defined', function() {
+        var img = iconElementFor(icon);
+        icon.alt = 'alt text value';
+        assert.isTrue(img.hasAttribute('alt'));
+        assert.strictEqual(img.getAttribute('alt'), 'alt text value');
+      });
+    });
+
+    suite('accessibility tests for an Icon From Icon Set', function() {
+      var icon;
+
+      setup(function() {
+        var elements = fixture('IconFromIconset');
+        icon = elements[1];
+      });
+
+      test('icon has no aria-label text by default', function() {
+        assert.isFalse(icon.hasAttribute('aria-label'));
+      });
+      test('icon aria-label text is empty string when iron-icon alt text is empty string', function() {
+        icon.alt = '';
+        assert.isTrue(icon.hasAttribute('aria-label'));
+        assert.strictEqual(icon.getAttribute('aria-label'), '');
+      });
+      test('icon aria-label text matches iron-icon alt text when defined', function() {
+        icon.alt = 'alt text value';
+        assert.isTrue(icon.hasAttribute('aria-label'));
+        assert.strictEqual(icon.getAttribute('aria-label'), 'alt text value');
+      });
+    });
+  });
 });
   </script>
 
