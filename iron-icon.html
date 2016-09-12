@@ -86,18 +86,18 @@ Custom property | Description | Default
   <template>
     <style>
       :host {
-        @apply(--layout-inline);
-        @apply(--layout-center-center);
+        @apply --layout-inline;
+        @apply --layout-center-center;
         position: relative;
 
         vertical-align: middle;
 
-        fill: var(--iron-icon-fill-color, currentcolor);
+        fill: var(--iron-icon-fill-color, currentColor);
         stroke: var(--iron-icon-stroke-color, none);
 
         width: var(--iron-icon-width, 24px);
         height: var(--iron-icon-height, 24px);
-        @apply(--iron-icon);
+        @apply --iron-icon;
       }
     </style>
   </template>
