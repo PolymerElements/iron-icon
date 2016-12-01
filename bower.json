@@ -36,10 +36,19 @@
   "variants": {
     "1.x": {
       "dependencies": {
-        "polymer": "Polymer/polymer#^1.7.0"
+        "iron-flex-layout": "polymerelements/iron-flex-layout#^1.0.0",
+        "iron-meta": "polymerelements/iron-meta#^1.0.0",
+        "polymer": "Polymer/polymer#^1.1.0"
       },
       "devDependencies": {
-        "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+        "test-fixture": "polymerelements/test-fixture#^1.0.0",
+        "promise-polyfill": "polymerlabs/promise-polyfill#^1.0.0",
+        "iron-iconset": "polymerelements/iron-iconset#^1.0.0",
+        "iron-icons": "polymerelements/iron-icons#^1.0.0",
+        "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
+        "web-component-tester": "^4.0.0",
+        "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
+        "paper-styles": "PolymerElements/paper-styles#^1.0.0"
       }
     }
   },
