@@ -24,12 +24,10 @@
     "polymer": "Polymer/polymer#2.0-preview"
   },
   "devDependencies": {
-    "test-fixture": "PolymerElements/test-fixture#^3.0.0-rc.1",
-    "promise-polyfill": "polymerlabs/promise-polyfill#^1.0.0",
     "iron-iconset": "PolymerElements/iron-iconset#2.0-preview",
     "iron-icons": "PolymerElements/iron-icons#2.0-preview",
     "iron-component-page": "polymerelements/iron-component-page#2.0-preview",
-    "web-component-tester": "v6.0.0-prerelease.5",
+    "web-component-tester": "^6.0.0-prerelease.6",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0-rc.1",
     "iron-demo-helpers": "PolymerElements/iron-demo-helpers#2.0-preview"
   },
@@ -41,7 +39,6 @@
         "polymer": "Polymer/polymer#^1.1.0"
       },
       "devDependencies": {
-        "test-fixture": "PolymerElements/test-fixture#^1.0.0",
         "promise-polyfill": "polymerlabs/promise-polyfill#^1.0.0",
         "iron-iconset": "polymerelements/iron-iconset#^1.0.0",
         "iron-icons": "polymerelements/iron-icons#^1.0.0",
@@ -51,16 +48,5 @@
         "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.2.5"
       }
     }
-  },
-  "resolutions": {
-    "iron-meta": "2.0-preview",
-    "iron-flex-layout": "2.0-preview",
-    "polymer": "2.0-preview",
-    "test-fixture": "^3.0.0-rc.1",
-    "iron-icons": "2.0-preview",
-    "iron-icon": "2.0-preview",
-    "iron-iconset-svg": "2.0-preview",
-    "webcomponentsjs": "^1.0.0-rc.1",
-    "paper-styles": "2.0-preview"
   }
 }
