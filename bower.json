@@ -41,6 +41,7 @@
         "polymer": "Polymer/polymer#^1.1.0"
       },
       "devDependencies": {
+        "test-fixture": "PolymerElements/test-fixture#^1.0.0",
         "promise-polyfill": "polymerlabs/promise-polyfill#^1.0.0",
         "iron-iconset": "polymerelements/iron-iconset#^1.0.0",
         "iron-icons": "polymerelements/iron-icons#^1.0.0",
