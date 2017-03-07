@@ -21,7 +21,7 @@
   "dependencies": {
     "iron-flex-layout": "PolymerElements/iron-flex-layout#2.0-preview",
     "iron-meta": "PolymerElements/iron-meta#2.0-preview",
-    "polymer": "Polymer/polymer#2.0-preview"
+    "polymer": "Polymer/polymer#^2.0.0-rc.1"
   },
   "devDependencies": {
     "iron-iconset": "PolymerElements/iron-iconset#2.0-preview",
