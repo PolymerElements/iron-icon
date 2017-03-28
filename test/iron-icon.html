@@ -239,6 +239,61 @@ suite('<iron-icon>', function() {
       var holder = fixture('ParentForceUpdate');
     });
   });
+
+  suite('accessibility', function() {
+    suite('accessibility tests with a .png', function() {
+      var icon;
+
+      setup(function() {
+        icon = fixture('TrivialIcon');
+      });
+
+      test('is hidden and has no alt or label by default', function() {
+        assert.isFalse(icon.hasAttribute('alt'));
+        assert.isFalse(icon.hasAttribute('aria-label'));
+        assert.isTrue(icon.hasAttribute('aria-hidden'));
+      });
+      test('is hidden and has no aria-label when the alt is empty, and is hidden', function() {
+        icon.alt ='';
+        assert.isFalse(icon.hasAttribute('aria-label'));
+        assert.isTrue(icon.hasAttribute('aria-hidden'));
+      });
+      test('is visible, has role set to img, and has a matching aria-label when alt is set', function() {
+        icon.alt = 'alt text';
+        assert.isTrue(icon.hasAttribute('aria-label'));
+        assert.isTrue(icon.hasAttribute('role', 'img'));
+        assert.isFalse(icon.hasAttribute('aria-hidden'));
+        assert.strictEqual(icon.getAttribute('aria-label'), 'alt text');
+      });
+    });
+
+    suite('accessibility tests with an iconset', function() {
+      var icon;
+      setup(function() {
+        var elements = fixture('IconFromIconset');
+        icon = elements[1];
+      });
+
+      test('is hidden and has no alt or label by default', function() {
+        assert.isFalse(icon.hasAttribute('alt'));
+        assert.isFalse(icon.hasAttribute('aria-label'));
+        assert.isTrue(icon.hasAttribute('aria-hidden'));
+      });
+      test('is hidden and has no aria-label when the alt is empty, and is hidden', function() {
+        icon.alt ='';
+        assert.isFalse(icon.hasAttribute('aria-label'));
+        assert.isTrue(icon.hasAttribute('aria-hidden'));
+      });
+      test('is visible, has role set to img, and has a matching aria-label when alt is set', function() {
+        icon.alt = 'alt text';
+        assert.isTrue(icon.hasAttribute('aria-label'));
+        assert.isTrue(icon.hasAttribute('role', 'img'));
+        assert.isFalse(icon.hasAttribute('aria-hidden'));
+        assert.strictEqual(icon.getAttribute('aria-label'), 'alt text');
+      });
+    });
+  });
+
 });
   </script>
 
