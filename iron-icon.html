@@ -99,6 +99,10 @@ Custom property | Description | Default
         height: var(--iron-icon-height, 24px);
         @apply --iron-icon;
       }
+
+      :host([hidden]) {
+        display: none;
+      }
     </style>
   </template>
 
