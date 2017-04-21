@@ -149,8 +149,8 @@ Custom property | Description | Default
       },
 
       observers: [
-        '_updateIcon(_meta, isAttached)',
-        '_updateIcon(theme, isAttached)',
+        '_debounceUpdateIcon(_meta, isAttached)',
+        '_debounceUpdateIcon(theme, isAttached)',
         '_srcChanged(src, isAttached)',
         '_iconChanged(icon, isAttached)'
       ],
@@ -161,15 +161,19 @@ Custom property | Description | Default
         var parts = (icon || '').split(':');
         this._iconName = parts.pop();
         this._iconsetName = parts.pop() || this._DEFAULT_ICONSET;
-        this._updateIcon();
+        this._debounceUpdateIcon();
       },
 
       _srcChanged: function(src) {
-        this._updateIcon();
+        this._debounceUpdateIcon();
       },
 
       _usesIconset: function() {
         return this.icon || !this.src;
+      },
+
+      _debounceUpdateIcon: function() {
+        this.debounce('_updateIcon', this._updateIcon);
       },
 
       /** @suppress {visibility} */
@@ -187,9 +191,9 @@ Custom property | Description | Default
               this._meta.byKey(this._iconsetName));
             if (this._iconset) {
               this._iconset.applyIcon(this, this._iconName, this.theme);
-              this.unlisten(window, 'iron-iconset-added', '_updateIcon');
+              this.unlisten(window, 'iron-iconset-added', '_debounceUpdateIcon');
             } else {
-              this.listen(window, 'iron-iconset-added', '_updateIcon');
+              this.listen(window, 'iron-iconset-added', '_debounceUpdateIcon');
             }
           }
         } else {
