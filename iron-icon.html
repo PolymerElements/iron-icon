@@ -70,6 +70,7 @@ The following custom properties are available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--iron-icon` | Mixin applied to the icon | {}
+`--iron-icon-image` | Mixin applied to the `src` image | {}
 `--iron-icon-width` | Width of the icon | `24px`
 `--iron-icon-height` | Height of the icon | `24px`
 `--iron-icon-fill-color` | Fill color of the svg icon | `currentcolor`
@@ -102,6 +103,9 @@ Custom property | Description | Default
 
       :host([hidden]) {
         display: none;
+      }
+      img {
+        @apply(--iron-icon-image);
       }
     </style>
   </template>
