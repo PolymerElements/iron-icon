@@ -149,22 +149,21 @@ Custom property | Description | Default
       },
 
       observers: [
-        '_updateIcon(_meta, isAttached)',
-        '_updateIcon(theme, isAttached)',
+        '_updateIcon(_meta, theme, isAttached)',
         '_srcChanged(src, isAttached)',
         '_iconChanged(icon, isAttached)'
       ],
 
       _DEFAULT_ICONSET: 'icons',
 
-      _iconChanged: function(icon) {
+      _iconChanged: function(icon, isAttached) {
         var parts = (icon || '').split(':');
         this._iconName = parts.pop();
         this._iconsetName = parts.pop() || this._DEFAULT_ICONSET;
         this._updateIcon();
       },
 
-      _srcChanged: function(src) {
+      _srcChanged: function(src, isAttached) {
         this._updateIcon();
       },
 
@@ -173,7 +172,7 @@ Custom property | Description | Default
       },
 
       /** @suppress {visibility} */
-      _updateIcon: function() {
+      _updateIcon: function(meta, theme, isAttached) {
         if (this._usesIconset()) {
           if (this._img && this._img.parentNode) {
             Polymer.dom(this.root).removeChild(this._img);
