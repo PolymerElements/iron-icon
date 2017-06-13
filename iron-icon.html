@@ -143,7 +143,14 @@ Custom property | Description | Default
          * @type {!Polymer.IronMeta}
          */
         _meta: {
-          value: Polymer.Base.create('iron-meta', {type: 'iconset'})
+          value: (function() {
+            var meta = document.createElement('iron-meta');
+            if (typeof meta._enableProperties === "function") {
+              meta._enableProperties();
+            }
+            meta.type = 'iconset';
+            return meta;
+          })(),
         }
 
       },
