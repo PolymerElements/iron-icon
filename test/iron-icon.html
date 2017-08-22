@@ -20,10 +20,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="../../web-component-tester/browser.js"></script>
   <script src="../../test-fixture/test-fixture-mocha.js"></script>
 
-  <link rel="import" href="../iron-icon.html">
-  <link rel="import" href="../../iron-iconset/iron-iconset.html">
-  <link rel="import" href="../../promise-polyfill/promise-polyfill.html">
-  <link rel="import" href="../../test-fixture/test-fixture.html">
+  <script type="module" src="../iron-icon.js"></script>
+  <script type="module" src="../../iron-iconset/iron-iconset.js"></script>
+  <script type="module" src="../../promise-polyfill/promise-polyfill.js"></script>
+  <script type="module" src="../../test-fixture/test-fixture.js"></script>
 
 </head>
 <body>
@@ -76,9 +76,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
-  <script>
+  <script type="module">
+import '../iron-icon.js';
+import '../../iron-iconset/iron-iconset.js';
+import '../../promise-polyfill/promise-polyfill.js';
+import '../../test-fixture/test-fixture.js';
+import { dom, flush } from '../../polymer/lib/legacy/polymer.dom.js';
 function iconElementFor (node) {
-  var nodes = Polymer.dom(node.root).childNodes;
+  var nodes = dom(node.root).childNodes;
 
   for (var i = 0; i < nodes.length; ++i) {
     if (nodes[i].nodeName.match(/DIV|IMG/)) {
@@ -120,19 +125,19 @@ suite('<iron-icon>', function() {
 
     teardown(function() {
       if (icon.parentNode != null) {
-        Polymer.dom(icon.parentNode).removeChild(icon);
+        dom(icon.parentNode).removeChild(icon);
       }
     });
 
     test('does not create icon until attached', function() {
       icon.src = 'location.png';
 
-      var children = Polymer.dom(icon.root).querySelectorAll('img,svg');
+      var children = dom(icon.root).querySelectorAll('img,svg');
 
       expect(children.length).to.be.eql(0);
-      Polymer.dom(document.body).appendChild(icon);
-      Polymer.dom.flush();
-      children = Polymer.dom(icon.root).querySelectorAll('img,svg');
+      dom(document.body).appendChild(icon);
+      flush();
+      children = dom(icon.root).querySelectorAll('img,svg');
       expect(children.length).to.be.eql(1);
     });
   });
@@ -239,7 +244,7 @@ suite('<iron-icon>', function() {
     });
   });
 });
-  </script>
+</script>
 
 </body>
 </html>
