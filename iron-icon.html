@@ -104,6 +104,8 @@ Custom property | Description | Default
         display: none;
       }
     </style>
+
+    <iron-meta id="meta" type="iconset"></iron-meta>
   </template>
 
   <script>
@@ -142,9 +144,7 @@ Custom property | Description | Default
         /**
          * @type {!Polymer.IronMeta}
          */
-        _meta: {
-          value: Polymer.Base.create('iron-meta', {type: 'iconset'})
-        }
+        _meta: Object
 
       },
 
@@ -154,6 +154,11 @@ Custom property | Description | Default
         '_srcChanged(src, isAttached)',
         '_iconChanged(icon, isAttached)'
       ],
+
+      ready() {
+        // Used to get around an issue with chrome 60
+        this._meta = this.$.meta;
+      },
 
       _DEFAULT_ICONSET: 'icons',
 
