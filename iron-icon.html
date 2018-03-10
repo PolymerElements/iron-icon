@@ -183,13 +183,20 @@ Custom property | Description | Default
               this._iconset.removeIcon(this);
             }
           } else if (this._iconsetName && this._meta) {
-            this._iconset = /** @type {?Polymer.Iconset} */ (
-              this._meta.byKey(this._iconsetName));
-            if (this._iconset) {
-              this._iconset.applyIcon(this, this._iconName, this.theme);
-              this.unlisten(window, 'iron-iconset-added', '_updateIcon');
-            } else {
-              this.listen(window, 'iron-iconset-added', '_updateIcon');
+            // Since _updateIcon can be called multiple times, make sure we
+            // avoid cloning the SVG if the icon & theme haven't changed
+            if (this._iconName !== this._lastIconName ||
+                this.theme !== this._lastTheme) {
+              this._iconset = /** @type {?Polymer.Iconset} */ (
+                this._meta.byKey(this._iconsetName));
+              if (this._iconset) {
+                this._lastIconName = this._iconName;
+                this._lastTheme = this.theme;
+                this._iconset.applyIcon(this, this._iconName, this.theme);
+                this.unlisten(window, 'iron-iconset-added', '_updateIcon');
+              } else {
+                this.listen(window, 'iron-iconset-added', '_updateIcon');
+              }
             }
           }
         } else {
