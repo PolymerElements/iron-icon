@@ -104,6 +104,7 @@ Custom property | Description | Default
         display: none;
       }
     </style>
+    <iron-meta type="iconset" id="meta"></iron-meta>
   </template>
 
   <script>
@@ -143,7 +144,7 @@ Custom property | Description | Default
          * @type {!Polymer.IronMeta}
          */
         _meta: {
-          value: Polymer.Base.create('iron-meta', {type: 'iconset'})
+          type: Element
         }
 
       },
@@ -154,6 +155,10 @@ Custom property | Description | Default
         '_srcChanged(src, isAttached)',
         '_iconChanged(icon, isAttached)'
       ],
+
+      attached: function () {
+        this._meta = this.$.meta;
+      },
 
       _DEFAULT_ICONSET: 'icons',
 
