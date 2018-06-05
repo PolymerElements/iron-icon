@@ -13,7 +13,7 @@
     "webmat": "^0.2.0"
   },
   "scripts": {
-    "update-types": "bower install && gen-typescript-declarations --deleteExisting --outDir .",
-    "format": "webmat && npm run update-types"
+    "update-types": "gen-typescript-declarations --deleteExisting --outDir .",
+    "format": "webmat"
   }
 }

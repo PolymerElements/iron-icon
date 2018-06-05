@@ -1,35 +1,19 @@
-language: node_js
 sudo: 'false'
-before_script:
-  - npm install -g polymer-cli
-  - polymer install --variants
-  - >-
-    npm run update-types && git diff --exit-code || (echo -e
-    '\n\033[31mERROR:\033[0m Typings are stale. Please run "npm run
-    update-types".' && false)
-  - >-
-    npm run format && git diff --exit-code || (echo -e '\n\033[31mERROR:\033[0m
-    Project is not formatted. Please run "npm run format".' && false)
+dist: trusty
+language: node_js
+node_js: '9'
+addons:
+  firefox: latest
+  chrome: stable
+cache:
+  directories:
+    - node_modules
 env:
   global:
     - secure: >-
         eWD6BSj0vroZbR8I2v5vQuer6R2grmVjJ6pTe6INyfOFFt2xIh3WcXi/afmAjWlgMZ/yAx7YfgmwI8qpN8ZYDsDvB1MHitl1N5MhaGGwBxd2Vpp1WJn8SRrplsnHrOZtwPqpVuAu4bsa8/GxNwnP2qJHmYsPhFd3dMcguViIgo8=
     - secure: >-
         CgrPN2wzwicrDc2SnJ8ygjpk0T3o6oDPT/5iXorirqaCFwNA+9O+1PQmjWYL3VCUVkHmm2QdOq78zIsWY3MRGaLKV0hMs5rRxRQPfVSC7AB+PQvHIHxj6Ay6tR3/jnHgd0UQlF6aGhS2hKkgWNtWdtlMMyVjPp+aVTSJGIK4kZE=
-node_js: '9'
-addons:
-  firefox: latest
-  chrome: stable
-script:
-  - xvfb-run polymer test
-  - |-
-    >-
-    if [ "${TRAVIS_PULL_REQUEST}" = "false" ]; then polymer test -s 'default';
-    fi
-dist: trusty
-install:
-  - npm install -g polymer-cli
-  - polymer install --variants
-cache:
-  directories:
-    - node_modules
+install: ./travis_scripts/install.sh
+before_script: ./travis_scripts/before_script.sh
+script: ./travis_scripts/script.sh
