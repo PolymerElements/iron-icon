@@ -1,15 +1,17 @@
 /**
 @license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+This code may only be used under the BSD style license found at
+http://polymer.github.io/LICENSE.txt The complete set of authors may be found at
+http://polymer.github.io/AUTHORS.txt The complete set of contributors may be
+found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
+part of the polymer project is also subject to an additional IP rights grant
+found at http://polymer.github.io/PATENTS.txt
 */
 /**
 
-The `iron-icon` element displays an icon. By default an icon renders as a 24px square.
+The `iron-icon` element displays an icon. By default an icon renders as a 24px
+square.
 
 Example using src:
 
@@ -27,15 +29,16 @@ Example setting size to 32px x 32px:
     </style>
 
 The iron elements include several sets of icons.
-To use the default set of icons, import `iron-icons.html` and use the `icon` attribute to specify an icon:
+To use the default set of icons, import `iron-icons.html` and use the `icon`
+attribute to specify an icon:
 
     <link rel="import" href="/components/iron-icons/iron-icons.html">
 
     <iron-icon icon="menu"></iron-icon>
 
-To use a different built-in set of icons, import the specific `iron-icons/<iconset>-icons.html`, and
-specify the icon as `<iconset>:<icon>`. For example, to use a communication icon, you would
-use:
+To use a different built-in set of icons, import the specific
+`iron-icons/<iconset>-icons.html`, and specify the icon as `<iconset>:<icon>`.
+For example, to use a communication icon, you would use:
 
     <link rel="import" href="/components/iron-icons/communication-icons.html">
 
@@ -43,15 +46,16 @@ use:
 
 You can also create custom icon sets of bitmap or SVG icons.
 
-Example of using an icon named `cherry` from a custom iconset with the ID `fruit`:
+Example of using an icon named `cherry` from a custom iconset with the ID
+`fruit`:
 
     <iron-icon icon="fruit:cherry"></iron-icon>
 
-See [iron-iconset](iron-iconset) and [iron-iconset-svg](iron-iconset-svg) for more information about
-how to create a custom iconset.
+See [iron-iconset](iron-iconset) and [iron-iconset-svg](iron-iconset-svg) for
+more information about how to create a custom iconset.
 
-See the [iron-icons demo](iron-icons?view=demo:demo/index.html) to see the icons available
-in the various iconsets.
+See the [iron-icons demo](iron-icons?view=demo:demo/index.html) to see the icons
+available in the various iconsets.
 
 To load a subset of icons from one of the default `iron-icons` sets, you can
 use the [poly-icon](https://poly-icon.appspot.com/) tool. It allows you
@@ -81,13 +85,14 @@ Custom property | Description | Default
   from HTML and may be out of place here. Review them and
   then delete this comment!
 */
-import { Base } from '@polymer/polymer/polymer-legacy.js';
-
 import '@polymer/iron-meta/iron-meta.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
-import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
+
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+import {Base} from '@polymer/polymer/polymer-legacy.js';
+
 Polymer({
   _template: html`
     <style>
