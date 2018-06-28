@@ -51,16 +51,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
   </div>
   <script type="module">
-import '../iron-icon.js';
-import '@polymer/paper-styles/demo-pages.js';
-setTimeout(function() {
-  // Import the code that powers the iron-iconset asynchronously
-  var linkElem = document.createElement('link');
-  linkElem.setAttribute('rel', 'import');
-  linkElem.setAttribute('href', '../../iron-iconset/iron-iconset.html');
-  document.head.appendChild(linkElem);
-  document.querySelector('#loading_message').innerText = 'Iconset Loaded.';
-}, 1000);
-</script>
+    import '../iron-icon.js';
+    import '@polymer/paper-styles/demo-pages.js';
+    setTimeout(function() {
+      // Import the code that powers the iron-iconset asynchronously
+      var linkElem = document.createElement('link');
+      linkElem.setAttribute('rel', 'import');
+      linkElem.setAttribute('href', '../../iron-iconset/iron-iconset.html');
+      document.head.appendChild(linkElem);
+      document.querySelector('#loading_message').innerText = 'Iconset Loaded.';
+    }, 1000);
+  </script>
 </body>
 </html>
