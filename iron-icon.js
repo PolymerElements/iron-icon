@@ -8,6 +8,14 @@ found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
 part of the polymer project is also subject to an additional IP rights grant
 found at http://polymer.github.io/PATENTS.txt
 */
+import '@polymer/iron-meta/iron-meta.js';
+import '@polymer/iron-flex-layout/iron-flex-layout.js';
+
+import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
+import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+import {Base} from '@polymer/polymer/polymer-legacy.js';
+
 /**
 
 The `iron-icon` element displays an icon. By default an icon renders as a 24px
@@ -80,19 +88,6 @@ Custom property | Description | Default
 @hero hero.svg
 @homepage polymer.github.io
 */
-/*
-  FIXME(polymer-modulizer): the above comments were extracted
-  from HTML and may be out of place here. Review them and
-  then delete this comment!
-*/
-import '@polymer/iron-meta/iron-meta.js';
-import '@polymer/iron-flex-layout/iron-flex-layout.js';
-
-import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
-import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
-import {html} from '@polymer/polymer/lib/utils/html-tag.js';
-import {Base} from '@polymer/polymer/polymer-legacy.js';
-
 Polymer({
   _template: html`
     <style>
