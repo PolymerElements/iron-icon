@@ -16,7 +16,6 @@
     "@polymer/promise-polyfill": "^3.0.0-pre.20",
     "@polymer/iron-iconset": "^3.0.0-pre.20",
     "@polymer/iron-icons": "^3.0.0-pre.20",
-    "@polymer/iron-component-page": "^3.0.0-pre.20",
     "wct-browser-legacy": "^1.0.1",
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.20"
