@@ -1,0 +1,6 @@
+{
+  "exclude": [
+    "demo/async.html",
+    "demo/index.html"
+  ]
+}
