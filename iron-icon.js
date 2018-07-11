@@ -36,19 +36,22 @@ Example setting size to 32px x 32px:
       }
     </style>
 
-The iron elements include several sets of icons.
-To use the default set of icons, import `iron-icons.html` and use the `icon`
-attribute to specify an icon:
+The iron elements include several sets of icons. To use the default set of
+icons, import `iron-icons.js` and use the `icon` attribute to specify an icon:
 
-    <link rel="import" href="/components/iron-icons/iron-icons.html">
+    <script type="module">
+      import "@polymer/iron-icons/iron-icons.js";
+    </script>
 
     <iron-icon icon="menu"></iron-icon>
 
 To use a different built-in set of icons, import the specific
-`iron-icons/<iconset>-icons.html`, and specify the icon as `<iconset>:<icon>`.
+`iron-icons/<iconset>-icons.js`, and specify the icon as `<iconset>:<icon>`.
 For example, to use a communication icon, you would use:
 
-    <link rel="import" href="/components/iron-icons/communication-icons.html">
+    <script type="module">
+      import "@polymer/iron-icons/communication-icons.js";
+    </script>
 
     <iron-icon icon="communication:email"></iron-icon>
 
@@ -59,16 +62,10 @@ Example of using an icon named `cherry` from a custom iconset with the ID
 
     <iron-icon icon="fruit:cherry"></iron-icon>
 
-See [iron-iconset](iron-iconset) and [iron-iconset-svg](iron-iconset-svg) for
-more information about how to create a custom iconset.
+See `<iron-iconset>` and `<iron-iconset-svg>` for more information about how to
+create a custom iconset.
 
-See the [iron-icons demo](iron-icons?view=demo:demo/index.html) to see the icons
-available in the various iconsets.
-
-To load a subset of icons from one of the default `iron-icons` sets, you can
-use the [poly-icon](https://poly-icon.appspot.com/) tool. It allows you
-to select individual icons, and creates an iconset from them that you can
-use directly in your elements.
+See the `iron-icons` demo to see the icons available in the various iconsets.
 
 ### Styling
 
