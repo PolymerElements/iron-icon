@@ -8,9 +8,9 @@ found at http://polymer.github.io/CONTRIBUTORS.txt Code distributed by Google as
 part of the polymer project is also subject to an additional IP rights grant
 found at http://polymer.github.io/PATENTS.txt
 */
-import '@polymer/iron-meta/iron-meta.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
 
+import {IronMeta} from '@polymer/iron-meta/iron-meta.js';
 import {Polymer} from '@polymer/polymer/lib/legacy/polymer-fn.js';
 import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
@@ -133,7 +133,7 @@ Polymer({
     src: {type: String},
 
     /**
-     * @type {!Polymer.IronMeta}
+     * @type {!IronMeta}
      */
     _meta: {value: Base.create('iron-meta', {type: 'iconset'})}
 
