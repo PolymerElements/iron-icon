@@ -16,6 +16,8 @@ import {dom} from '@polymer/polymer/lib/legacy/polymer.dom.js';
 import {html} from '@polymer/polymer/lib/utils/html-tag.js';
 import {Base} from '@polymer/polymer/polymer-legacy.js';
 
+const meta = new IronMeta({type: 'iconset'});
+
 /**
 
 The `iron-icon` element displays an icon. By default an icon renders as a 24px
@@ -132,15 +134,10 @@ Polymer({
      */
     src: {type: String},
 
-    /**
-     * @type {!IronMeta}
-     */
-    _meta: {value: Base.create('iron-meta', {type: 'iconset'})}
-
   },
 
   observers: [
-    '_updateIcon(_meta, isAttached)',
+    '_updateIcon(isAttached)',
     '_updateIcon(theme, isAttached)',
     '_srcChanged(src, isAttached)',
     '_iconChanged(icon, isAttached)'
@@ -173,9 +170,9 @@ Polymer({
         if (this._iconset) {
           this._iconset.removeIcon(this);
         }
-      } else if (this._iconsetName && this._meta) {
-        this._iconset = /** @type {?Polymer.Iconset} */ (
-            this._meta.byKey(this._iconsetName));
+      } else if (this._iconsetName) {
+        this._iconset =
+            /** @type {?Polymer.Iconset} */ (meta.byKey(this._iconsetName));
         if (this._iconset) {
           this._iconset.applyIcon(this, this._iconName, this.theme);
           this.unlisten(window, 'iron-iconset-added', '_updateIcon');
