@@ -171,8 +171,7 @@ Polymer({
           this._iconset.removeIcon(this);
         }
       } else if (this._iconsetName) {
-        this._iconset =
-            /** @type {?Polymer.Iconset} */ (meta.byKey(this._iconsetName));
+        this._iconset = meta.byKey(this._iconsetName);
         if (this._iconset) {
           this._iconset.applyIcon(this, this._iconName, this.theme);
           this.unlisten(window, 'iron-iconset-added', '_updateIcon');
