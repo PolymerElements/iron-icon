@@ -81,13 +81,11 @@ Custom property | Description | Default
 `--iron-icon-fill-color` | Fill color of the svg icon | `currentcolor`
 `--iron-icon-stroke-color` | Stroke color of the svg icon | none
 
-@group Iron Elements
 @element iron-icon
 @demo demo/index.html
-@hero hero.svg
-@homepage polymer.github.io
 */
 Polymer({
+  /** @override */
   _template: html`
     <style>
       :host {
